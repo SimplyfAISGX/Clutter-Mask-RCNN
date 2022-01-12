@@ -60,7 +60,6 @@ class ClutterMaskRCNN():
         with torch.no_grad():
             prediction = self.model([Tf.to_tensor(img).to(self.device)])
 
-        print(prediction)
         scores = prediction[0]['scores'].cpu().detach().numpy()
         selection = scores > threshold
         labels = prediction[0]['labels'].cpu().detach().numpy()[selection]
